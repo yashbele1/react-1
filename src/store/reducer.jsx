@@ -15,24 +15,24 @@ export const DELETE = 'DELETE';
 export const LO_STO = 'LO_STO';
 
 // REDUCER // REDUCER // REDUCER
-export const reducer = (state, action) => {
-  if (action.type === LO_STO) {
+export const reducer = (state, { payload }) => {
+  if (type === LO_STO) {
     const get = localStorage.getItem('users');
     const users = get ? JSON.parse(get) : [];
     return { ...state, users };
   }
-  if (action.type === INIT) {
+  if (type === INIT) {
     return {
       ...state,
       editID: null,
       inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
-  if (action.type === CHANGE) {
-    return { ...state, inp: action.payload };
+  if (type === CHANGE) {
+    return { ...state, inp: payload };
   }
-  if (action.type === CREATE) {
-    const users = [...state.users, action.payload];
+  if (type === CREATE) {
+    const users = [...state.users, payload];
     localStorage.setItem('users', JSON.stringify(users));
     return {
       ...state,
@@ -40,12 +40,12 @@ export const reducer = (state, action) => {
       inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
-  if (action.type === EDIT) {
-    return { ...state, inp: action.payload, editID: action.payload.id };
+  if (type === EDIT) {
+    return { ...state, inp: payload, editID: payload.id };
   }
-  if (action.type === UPDATE) {
+  if (type === UPDATE) {
     const users = state.users.map((i) =>
-      i.id === state.editID ? (i = action.payload) : i
+      i.id === state.editID ? (i = payload) : i
     );
     localStorage.setItem('users', JSON.stringify(users));
     return {
@@ -55,8 +55,8 @@ export const reducer = (state, action) => {
       inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
-  if (action.type === DELETE) {
-    const users = state.users.filter((i) => i.id !== action.payload);
+  if (type === DELETE) {
+    const users = state.users.filter((i) => i.id !== payload);
     localStorage.setItem('users', JSON.stringify(users));
     return { ...state, users };
   }
