@@ -14,7 +14,7 @@ const Form = () => {
   const handleChange = (params) => (e) =>
     dispatch({
       type: CHANGE,
-      payload: { ...state.inputs, [params]: e.target.value },
+      payload: { ...state.inp, [params]: e.target.value },
     });
 
   const handleSubmit = (e) => {
@@ -40,7 +40,7 @@ const Form = () => {
           <div key={i.id}>
             <label htmlFor={i.id}>{i.label}</label>
             <input
-              value={eval(`state.inputs.${i.id}`)}
+              value={eval(`state.inp.${i.id}`)}
               onChange={handleChange(i.id)}
               id={i.id}
               type='text'
