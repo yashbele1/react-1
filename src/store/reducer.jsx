@@ -15,7 +15,7 @@ export const DELETE = 'DELETE';
 export const LO_STO = 'LO_STO';
 
 // REDUCER // REDUCER // REDUCER
-export const reducer = (state, { payload }) => {
+export const reducer = (state, { type, payload }) => {
   if (type === LO_STO) {
     const get = localStorage.getItem('users');
     const users = get ? JSON.parse(get) : [];
