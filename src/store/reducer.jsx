@@ -18,7 +18,7 @@ export const LO_STO = 'LO_STO';
 export const reducer = (state, action) => {
   if (action.type === LO_STO) {
     const get = localStorage.getItem('users');
-    const users = get ? JSON.parse(getUsers) : [];
+    const users = get ? JSON.parse(get) : [];
     return { ...state, users };
   }
   if (action.type === INIT) {
