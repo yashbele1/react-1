@@ -28,7 +28,7 @@ export const pnx = (pn) => {
   if (!pn) return;
   const pnTrim = pn.trim();
   const check = new RegExp('(?=.*[^0-9])').test(pnTrim);
-  if (check || pnTrim.length < 10) return;
+  if (check || !pnTrim.length === 10) return;
   return pnTrim;
 };
 
