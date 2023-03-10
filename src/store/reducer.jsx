@@ -40,6 +40,9 @@ export const reducer = (state, action) => {
       inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
+  if (action.type === EDIT) {
+    return { ...state, inp: action.payload, editID: action.payload.id };
+  }
   if (action.type === UPDATE) {
     const { fn, ln, pn, ea } = action.payload;
     const users = state.users.map((i) =>
@@ -52,9 +55,6 @@ export const reducer = (state, action) => {
       editID: null,
       inp: { fn: '', ln: '', pn: '', ea: '' },
     };
-  }
-  if (action.type === EDIT) {
-    return { ...state, inp: action.payload, editID: action.payload.id };
   }
   if (action.type === DELETE) {
     const users = state.users.filter((i) => i.id !== action.payload);
