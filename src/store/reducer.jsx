@@ -2,7 +2,7 @@
 export const initState = {
   users: [],
   editID: null,
-  inputs: { fn: '', ln: '', pn: '', ea: '' },
+  inp: { fn: '', ln: '', pn: '', ea: '' },
 };
 
 // ACTIONS // ACTIONS // ACTIONS
@@ -17,12 +17,19 @@ export const LO_STO = 'LO_STO';
 // REDUCER // REDUCER // REDUCER
 export const reducer = (state, action) => {
   if (action.type === LO_STO) {
-    const getUsers = localStorage.getItem('users');
-    const users = getUsers ? JSON.parse(getUsers) : [];
+    const get = localStorage.getItem('users');
+    const users = get ? JSON.parse(getUsers) : [];
     return { ...state, users };
   }
+  if (action.type === INIT) {
+    return {
+      ...state,
+      editID: null,
+      inp: { fn: '', ln: '', pn: '', ea: '' },
+    };
+  }
   if (action.type === CHANGE) {
-    return { ...state, inputs: action.payload };
+    return { ...state, inp: action.payload };
   }
   if (action.type === CREATE) {
     const users = [...state.users, action.payload];
@@ -30,7 +37,7 @@ export const reducer = (state, action) => {
     return {
       ...state,
       users,
-      inputs: { fn: '', ln: '', pn: '', ea: '' },
+      inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
   if (action.type === UPDATE) {
@@ -43,22 +50,15 @@ export const reducer = (state, action) => {
       ...state,
       users,
       editID: null,
-      inputs: { fn: '', ln: '', pn: '', ea: '' },
+      inp: { fn: '', ln: '', pn: '', ea: '' },
     };
   }
   if (action.type === EDIT) {
-    return { ...state, inputs: action.payload, editID: action.payload.id };
+    return { ...state, inp: action.payload, editID: action.payload.id };
   }
   if (action.type === DELETE) {
     const users = state.users.filter((i) => i.id !== action.payload);
     localStorage.setItem('users', JSON.stringify(users));
     return { ...state, users };
-  }
-  if (action.type === INIT) {
-    return {
-      ...state,
-      editID: null,
-      inputs: { fn: '', ln: '', pn: '', ea: '' },
-    };
   }
 };

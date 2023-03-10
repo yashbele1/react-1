@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { CHANGE, CREATE, UPDATE } from '../store/reducer';
-import { inpDivs, fnx, lnx, pnx, eax } from '../store/validation';
+import { inpDiv, fnx, lnx, pnx, eax } from '../store/validation';
 
 const Form = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { fn, ln, pn, ea } = state.inputs;
+    const { fn, ln, pn, ea } = state.inp;
     const inp = { fn: fnx(fn), ln: lnx(ln), pn: pnx(pn), ea: eax(ea) };
     if (!inp.fn) return toast.warn('Invalid first name!');
     if (!inp.ln) return toast.warn('Invalid last name!');
@@ -36,7 +36,7 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit}>
       <section>
-        {inpDivs.map((i) => (
+        {inpDiv.map((i) => (
           <div key={i.id}>
             <label htmlFor={i.id}>{i.label}</label>
             <input

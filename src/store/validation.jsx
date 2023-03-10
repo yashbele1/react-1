@@ -1,11 +1,11 @@
-export const inpDivs = [
+export const inpDiv = [
   { label: 'First Name', id: 'fn' },
   { label: 'Last Name', id: 'ln' },
   { label: 'Phone Number', id: 'pn' },
   { label: 'Email Address', id: 'ea' },
 ];
 
-// CHECKS // CHECKS // CHECKS
+// VALIDATE // VALIDATE // VALIDATE
 export const fnx = (fn) => {
   if (!fn) return;
   const fnTrim = fn.trim();

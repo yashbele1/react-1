@@ -41,15 +41,11 @@ const Table = () => {
                     dispatch({ type: EDIT, payload: i });
                     navigate('/form');
                   }}
-                  style={{
-                    cursor: 'pointer',
-                    fontSize: '1.05rem',
-                    marginRight: '1rem',
-                  }}
+                  className='edit-icon'
                 />
                 <FaRegTrashAlt
                   onClick={() => dispatch({ type: DELETE, payload: i.id })}
-                  style={{ fontSize: '1rem', cursor: 'pointer' }}
+                  className='delete-icon'
                 />
               </td>
             </tr>
