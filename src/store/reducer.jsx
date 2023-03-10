@@ -44,9 +44,8 @@ export const reducer = (state, action) => {
     return { ...state, inp: action.payload, editID: action.payload.id };
   }
   if (action.type === UPDATE) {
-    const { fn, ln, pn, ea } = action.payload;
     const users = state.users.map((i) =>
-      i.id === state.editID ? { ...i, fn, ln, pn, ea } : i
+      i.id === state.editID ? (i = action.payload) : i
     );
     localStorage.setItem('users', JSON.stringify(users));
     return {
