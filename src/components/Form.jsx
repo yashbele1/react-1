@@ -50,7 +50,7 @@ const Form = () => {
         ))}
         <div>
           {state.editID ? (
-            <button type='submit'>Edit</button>
+            <button type='submit'>Update</button>
           ) : (
             <button type='submit'>Submit</button>
           )}
